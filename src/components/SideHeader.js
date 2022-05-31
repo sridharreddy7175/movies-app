@@ -18,7 +18,7 @@ const SideHeader = (props) => {
                 }&language=en-US&query=${searchText}&page=${page}&include_adult=false`
             );
 
-            console.log("tv", data)
+            console.log("tv", data);
             setContent(data.results);
             history?.push("/search", { content: data.results });
             // setNumOfPages(data.total_pages);
@@ -33,7 +33,6 @@ const SideHeader = (props) => {
         fetchSearch();
         // eslint-disable-next-line
     }, [type, page]);
-
 
     return (
         <div className="banner-img">

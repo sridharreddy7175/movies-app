@@ -5,13 +5,13 @@ const PopularMovies = () => {
   const [content, setContent] = useState([]);
   const [page, setPage] = useState(1);
   const [numOfPages, setNumOfPages] = useState();
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     FetchPopular();
   }, []);
 
   const FetchPopular = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
 
     try {
       const trendingData = await fetch(
@@ -21,15 +21,15 @@ const PopularMovies = () => {
       console.log("result", response);
       setContent(response.results);
       setNumOfPages(response.total_pages);
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (errors) {
       console.log("err", errors);
     }
   };
 
   const loadMore = async (page) => {
-    console.log("page", page)
-    setPage(page + 1)
+    console.log("page", page);
+    setPage(page + 1);
     // setIsLoading(true)
 
     try {
@@ -41,27 +41,23 @@ const PopularMovies = () => {
       setContent(response.results);
       setNumOfPages(response.total_pages);
       // setIsLoading(false)
-
     } catch (errors) {
       console.log("err", errors);
     }
-
   };
 
   useEffect(() => {
-    console.log("useEfectPage", page)
-  }, [page])
+    console.log("useEfectPage", page);
+  }, [page]);
 
   if (isLoading === true) {
-    return <h3>Loading.............</h3>
+    return <h3>Loading.............</h3>;
   }
 
   return (
     <div>
       <div className="container">
         <h3 className="mt-3">Popular Movies</h3>
-
-
 
         {content.map((c, index) => {
           return (
@@ -72,9 +68,7 @@ const PopularMovies = () => {
               >
                 <img
                   src={
-                    c.poster_path
-                      ? `${img_300}${c.poster_path}`
-                      : unavailable
+                    c.poster_path ? `${img_300}${c.poster_path}` : unavailable
                   }
                   alt={c.title}
                   height="300px"
@@ -95,16 +89,20 @@ const PopularMovies = () => {
         })}
         <br />
         <p>
-          <button onClick={() => loadMore(page)} type="button"
-
-            style={{ backgroundColor: "#29B4E4", width: "100%", color: "white" }}
-
-            className="load-more mt-3">
+          <button
+            onClick={() => loadMore(page)}
+            type="button"
+            style={{
+              backgroundColor: "#29B4E4",
+              width: "100%",
+              color: "white",
+            }}
+            className="load-more mt-3"
+          >
             Load more
           </button>
         </p>
       </div>
-
     </div>
   );
 };

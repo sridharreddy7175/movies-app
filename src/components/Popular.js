@@ -1,13 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { img_300, unavailable } from "../config/config";
 import Trending from "../pages/Trending/Trending";
+import HomeRentSider from "./HomeRentSider/HomeRentSider";
+import HomeThearterSider from "./HomeThearterSider/HomeThearterSider";
+import HomeTvSider from "./Hometvsider/HomeTvSider";
 
 const Popular = () => {
+    const [stream, setStream] = useState(false);
+    const [tv, setTv] = useState(0);
+    const [rent, setRent] = useState("");
+    const [tabs, setTabs] = useState("stream");
 
-    const handleTv = () => {
-        console.log("hello")
-    }
+    const dataView = (view) => {
+        switch (view) {
+            case "stream":
+                return <Trending />;
+            case "tv":
+                return <HomeTvSider />
+            case "rent":
+                return <HomeRentSider />;
+            case "theater":
+                return <HomeThearterSider />
+            default:
+                return <h1>Stream</h1>;
+        }
+    };
+    const handleStream = (stream) => {
+        console.log(stream, "shh");
+        setTabs(stream);
+
+    };
+
 
 
 
@@ -25,22 +49,67 @@ const Popular = () => {
                         }}
                     >
                         <h6>
-                            <Link className="ml-1">Streaming</Link>
+                            <button
+                                className="ml-2 rounded"
+                                onClick={() => handleStream("stream")}
+                                style={{
+                                    border: "none",
+                                    color: "white",
+                                    backgroundColor: "blue",
+                                    outline: "none",
+                                }}
+                            >
+                                {" "}
+                                Streaming
+                            </button>
                         </h6>
                         <h6>
-                            <Link className="ml-4" onClick={handleTv}>On Tv</Link>
+                            <button className="ml-4 mr-2 rounded" onClick={() => handleStream("tv")}
+                                style={{
+                                    border: "none",
+                                    color: "white",
+                                    backgroundColor: "blue",
+                                    outline: "none",
+                                }}
+                            >
+                                {" "}
+                                On Tv
+                            </button>
                         </h6>
                         <h6>
-                            <Link className="ml-4">For Rent</Link>
+                            <button
+                                className="ml-4 mr-2 rounded"
+                                onClick={() => handleStream("rent")}
+                                style={{
+                                    border: "none",
+                                    color: "white",
+                                    backgroundColor: "blue",
+                                    outline: "none",
+                                }}
+                            >
+                                {" "}
+                                For Rent
+                            </button>
                         </h6>
                         <h6>
-                            <Link className="ml-4 mr-2">In Theater</Link>
+                            <button
+                                className="ml-4 mr-2 rounded"
+                                onClick={() => handleStream("theater")}
+                                style={{
+                                    border: "none",
+                                    color: "white",
+                                    backgroundColor: "blue",
+                                    outline: "none",
+                                }}
+                            >
+                                {" "}
+                                In Theater
+                            </button>
                         </h6>
                     </div>
                 </div>
             </div>
-            <Trending />
-
+            {dataView(tabs)}
         </div>
     );
 };

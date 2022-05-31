@@ -1,9 +1,26 @@
-import React from 'react'
-import { Link } from "react-router-dom";
-import Tv from '../pages/Tv/Tv';
-
+import React from "react";
+import { useState } from "react";
+import Trending from "../pages/Trending/Trending";
+import Tv from "../pages/Tv/Tv";
 
 const FreeWatch = () => {
+    const [tabs, setTabs] = useState("tv");
+
+    const dataView = (view) => {
+        switch (view) {
+            case "tv":
+                return <Tv />;
+            case "movies":
+                return <Trending />;
+            default:
+                return <h1>Stream</h1>;
+        }
+    };
+    const handleStream = (stream) => {
+        console.log(stream, "shh");
+        setTabs(stream);
+    };
+
     return (
         <div>
             <div className="container mt-2 mb-3">
@@ -18,18 +35,41 @@ const FreeWatch = () => {
                         }}
                     >
                         <h6>
-                            <Link className="ml-1">Movies</Link>
+                            <button
+                                className="ml-2 rounded"
+                                onClick={() => handleStream("tv")}
+                                style={{
+                                    border: "none",
+                                    color: "white",
+                                    backgroundColor: "blue",
+                                    outline: "none",
+                                }}
+                            >
+                                {" "}
+                                Tv
+                            </button>
                         </h6>
                         <h6>
-                            <Link className="ml-4">Tv</Link>
+                            <button
+                                className="ml-2 rounded"
+                                onClick={() => handleStream("movies")}
+                                style={{
+                                    border: "none",
+                                    color: "white",
+                                    backgroundColor: "blue",
+                                    outline: "none",
+                                }}
+                            >
+                                {" "}
+                                Movies
+                            </button>
                         </h6>
-
                     </div>
                 </div>
             </div>
-            <Tv />
+            {dataView(tabs)}
         </div>
-    )
-}
+    );
+};
 
-export default FreeWatch
+export default FreeWatch;
