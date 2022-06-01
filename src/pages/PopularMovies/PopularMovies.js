@@ -30,7 +30,7 @@ const PopularMovies = () => {
   const loadMore = async (page) => {
     console.log("page", page);
     setPage(page + 1);
-    // setIsLoading(true)
+    setIsLoading(true)
 
     try {
       const trendingData = await fetch(
@@ -38,9 +38,11 @@ const PopularMovies = () => {
       );
       const response = await trendingData.json();
       console.log("result", response);
-      setContent(response.results);
+      // var data = content.concat(content, response.results)
+      // setContent(data);
+      setContent([...content, ...response.results]);
       setNumOfPages(response.total_pages);
-      // setIsLoading(false)
+      setIsLoading(false)
     } catch (errors) {
       console.log("err", errors);
     }
