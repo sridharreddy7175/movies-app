@@ -44,10 +44,11 @@ const SideHeader = (props) => {
                 <div className="pt-5">
                     <input
                         type="email"
-                        class="form-control"
+                        className="form-control mb-3"
                         placeholder="Search for a movie,tv show,person ......"
                         onChange={(e) => setSearchText(e.target.value)}
                     />
+
                     <button
                         className="btn btn-outline-success my-2 my-sm-0 mt-3"
                         type="submit"

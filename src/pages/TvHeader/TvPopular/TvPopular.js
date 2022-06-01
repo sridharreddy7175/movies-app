@@ -27,36 +27,32 @@ const TvPopular = (props) => {
     };
     return (
         <div>
-            <div className="container-fluid mb-5">
+            <div className="container mb-5">
                 <h3 className="mt-3">Upcoming Movies</h3>
 
-                <div className="row">
-                    <div className="col-md-3">Hello</div>
-                    <div class="col-md-9">
-                        {content.map((c) => {
-                            return (
-                                <div className="toprated-movie mt-3">
-                                    <div className="card123  mr-3 " style={{ width: "200px", borderRadius: "10px" }}>
-                                        <img
-                                            src={
-                                                c.poster_path ? `${img_300}${c.poster_path}` : unavailable
-                                            }
-                                            alt={c.title}
-                                            height="300px"
-                                        />
-                                        <div className="container">
-                                            <h6>
-                                                <b>{c.name.substring(0, 10)}</b>
-                                            </h6>
-                                            <p>{c.first_air_date}</p>
-                                        </div>
-                                    </div>
+                {content.map((c) => {
+                    return (
+                        <div className="toprated-movie mt-3">
+                            <div className="card123  mr-3 " style={{ width: "200px", borderRadius: "10px" }}>
+                                <img
+                                    src={
+                                        c.poster_path ? `${img_300}${c.poster_path}` : unavailable
+                                    }
+                                    alt={c.title}
+                                    height="300px"
+                                />
+                                <div className="container">
+                                    <h6>
+                                        <b>{c.name.substring(0, 10)}</b>
+                                    </h6>
+                                    <p>{c.first_air_date}</p>
                                 </div>
-                            );
-                        })}
-                    </div>
-                </div>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
+
         </div>
     );
 };

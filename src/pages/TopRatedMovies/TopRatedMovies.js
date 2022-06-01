@@ -22,39 +22,35 @@ const TopRatedMovies = () => {
   return (
     <div>
       <div>
-        <div className="container-fluid">
+        <div className="container mt-3">
           <h3>Top Rated Movies</h3>
 
-          <div className="row">
-            <div className="col-md-3">Hello</div>
-            <div class="col-md-9">
-              {content.map((c) => {
-                return (
-                  <div className="toprated-movie">
-                    <div className="card123 mb-3 mr-3 mt-5">
-                      <img
-                        src={
-                          c.poster_path
-                            ? `${img_300}${c.poster_path}`
-                            : unavailable
-                        }
-                        alt={c.title}
-                        height="300px"
-                      />
-                      <div className="container">
-                        <h6>
-                          <b>{c.title.substring(0, 10)}</b>
-                        </h6>
-                        <p>{c.release_date}</p>
-                      </div>
-                    </div>
+          {content.map((c) => {
+            return (
+              <div className="toprated-movie">
+                <div className="card123 mb-3 mr-3 mt-5">
+                  <img
+                    src={
+                      c.poster_path
+                        ? `${img_300}${c.poster_path}`
+                        : unavailable
+                    }
+                    alt={c.title}
+                    height="300px"
+                  />
+                  <div className="container">
+                    <h6>
+                      <b>{c.title.substring(0, 10)}</b>
+                    </h6>
+                    <p>{c.release_date}</p>
                   </div>
-                );
-              })}
-            </div>
-          </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
+
     </div>
   );
 };

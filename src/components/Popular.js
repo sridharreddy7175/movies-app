@@ -7,21 +7,18 @@ import HomeThearterSider from "./HomeThearterSider/HomeThearterSider";
 import HomeTvSider from "./Hometvsider/HomeTvSider";
 
 const Popular = () => {
-    const [stream, setStream] = useState(false);
-    const [tv, setTv] = useState(0);
-    const [rent, setRent] = useState("");
     const [tabs, setTabs] = useState("stream");
 
     const dataView = (view) => {
         switch (view) {
             case "stream":
                 return <Trending />;
-            case "tv":
+            case "tvs":
                 return <HomeTvSider />
-            case "rent":
-                return <HomeRentSider />;
             case "theater":
                 return <HomeThearterSider />
+            case "rents":
+                return <HomeRentSider />;
             default:
                 return <h1>Stream</h1>;
         }
@@ -64,7 +61,7 @@ const Popular = () => {
                             </button>
                         </h6>
                         <h6>
-                            <button className="ml-4 mr-2 rounded" onClick={() => handleStream("tv")}
+                            <button className="ml-4 mr-2 rounded" onClick={() => handleStream("tvs")}
                                 style={{
                                     border: "none",
                                     color: "white",
@@ -74,21 +71,6 @@ const Popular = () => {
                             >
                                 {" "}
                                 On Tv
-                            </button>
-                        </h6>
-                        <h6>
-                            <button
-                                className="ml-4 mr-2 rounded"
-                                onClick={() => handleStream("rent")}
-                                style={{
-                                    border: "none",
-                                    color: "white",
-                                    backgroundColor: "blue",
-                                    outline: "none",
-                                }}
-                            >
-                                {" "}
-                                For Rent
                             </button>
                         </h6>
                         <h6>
@@ -106,6 +88,22 @@ const Popular = () => {
                                 In Theater
                             </button>
                         </h6>
+                        <h6>
+                            <button
+                                className="ml-4 mr-2 rounded"
+                                onClick={() => handleStream("rents")}
+                                style={{
+                                    border: "none",
+                                    color: "white",
+                                    backgroundColor: "blue",
+                                    outline: "none",
+                                }}
+                            >
+                                {" "}
+                                For Rent
+                            </button>
+                        </h6>
+
                     </div>
                 </div>
             </div>
